@@ -10,6 +10,7 @@ const app = express();
 const port = process.env.PORT || 8000;
 
 import path from "path"
+import { fileUrlToPath } from "url"
 
 // require mongoose to Connect with the database
 import mongoose from "mongoose";
@@ -36,6 +37,9 @@ app.use("/filestorage", express.static('uploads/images'));
 
 //reuire express.json to get obj to json
 app.use(express.json());
+
+const __filename = fileUrlToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 app.use(express.static(path.join(__dirname, '../frontend/build')))
 
